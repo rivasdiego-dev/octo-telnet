@@ -1,0 +1,7 @@
+.main-card {
+  @apply space-y-8 text-center bg-white sm:py-12 sm:px-24 py-4 px-8 rounded shadow max-w-[36rem] min-w-80;
+}
+
+.main-card button {
+  @apply w-full bg-gray-800 py-2 rounded text-white font-bold tracking-widest hover:bg-slate-700 transition-all;
+}
