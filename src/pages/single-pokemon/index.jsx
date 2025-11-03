@@ -4,6 +4,7 @@ import NotFoundPage from "../not-found";
 import { capitalize } from "../../utils";
 import Types from "../../components/single-pokemon/Types";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import DescriptionCard from "../../components/single-pokemon/DescriptionCard";
 
 export default function SinglePokemonPage() {
     const { name } = useParams();
@@ -68,18 +69,15 @@ export default function SinglePokemonPage() {
                 <div className="text-white bg-blue-900 bg-opacity-50 p-4 rounded-md shadow-md">
                     {flavorTexts ? (() => {
                         const spanish = flavorTexts.filter(ft => ft.language?.name === 'es');
-                        if (spanish.length === 0) {
-                            return <p>No description available.</p>;
-                        }
+                        if (spanish.length === 0) return <p>No description available.</p>;
+
                         return spanish.map((ft, idx) => (
-                            <div key={idx} className="mb-3 text-left">
-                                <p className="whitespace-pre-line">{ft.flavor_text.replace(/\f/g, ' ')}</p>
-                                <div className="mt-2">
-                                    <span className="inline-block bg-blue-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
-                                        {ft.version?.name.replace(/-/g, ' ')}
-                                    </span>
-                                </div>
-                            </div>
+
+                            <DescriptionCard
+                                key={idx}
+                                description={ft.flavor_text.replace(/\f/g, ' ')}
+                                game={ft.version?.name.replace(/-/g, ' ')}
+                            />
                         ));
                     })() : <p>No description available.</p>}
                 </div>
